@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Toast Notification</title>
+</head>
+<body>
+    <div class="container">
+        <button onclick="Toast(submit_msg)">Success</button>
+        <button onclick="Toast(error_msg)">Error</button>
+        <button onclick="Toast(invalid_msg)">Invalid</button>
+    </div>
+    <div class="task-bar"></div>
+
+    <script>
+        var submit_msg = "<span>&#x2714;</span> Succesfully Submitted!";
+        var error_msg = "<span>&#x292C;</span>  Error! Try Again!";
+        var invalid_msg = "<span>&#x21;</span>  Invalid Entry! Enter Again!";
+        let task_bar = document.querySelector(".task-bar");
+
+        function Toast(msg){
+            var task = document.createElement("div");
+            task.innerHTML = msg;
+            task.classList.add("toast");
+            task_bar.appendChild(task);
+            if(msg == submit_msg){
+                task.classList.add("success");
+            }
+            else if(msg == error_msg){
+                task.classList.add("error");
+            }
+            else{
+                task.classList.add("invalid");
+            }
+
+            setInterval(function(){
+                task.remove();
+            },5000)
+        }
+    </script>
+</body>
+</html>
